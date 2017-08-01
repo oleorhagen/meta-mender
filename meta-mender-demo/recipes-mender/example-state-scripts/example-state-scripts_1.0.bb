@@ -1,6 +1,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI = "file://example-script;subdir=${PN}-${PV} \
+           file://example-retry;subdir=${PN}-${PV} \
           file://LICENSE;subdir=${PN}-${PV} \
           "
 
@@ -17,4 +18,6 @@ do_compile() {
     cp example-script ${MENDER_STATE_SCRIPTS_DIR}/ArtifactInstall_Leave_99
     cp example-script ${MENDER_STATE_SCRIPTS_DIR}/ArtifactReboot_Leave_50
     cp example-script ${MENDER_STATE_SCRIPTS_DIR}/ArtifactCommit_Enter_50
+    cp example-retry ${MENDER_STATE_SCRIPTS_DIR}/ArtifactInstall_Enter_5
+    cp example-retry ${MENDER_STATE_SCRIPTS_DIR}/ArtifactInstall_Leave_5
 }
