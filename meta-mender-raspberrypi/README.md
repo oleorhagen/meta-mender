@@ -46,5 +46,19 @@ in addition to `meta-mender` dependencies.
         # Use the same type here as specified in IMAGE_FSTYPES to avoid
         # building an unneeded image file.
         SDIMG_ROOTFS_TYPE = "ext4"
+        
+        # In order to enable wifi add the following
+
+        # Add the wifi recipe
+        DISTRO_FEATURES += " wifi"
+        
+        # Then add the requried dependencies (network authentication and wireless driver)
+        IMAGE_INSTALL += "iw wpa_supplicant linux-firmware-bcm43430"
+        
+        The following variables will also have to be set in your local.conf file:
+
+        MENDER_DEMO_WIFI_SSID = "ssid"
+        MENDER_DEMO_WIFI_PASSKEY = "password"
+        
 
 - Run `bitbake <image name>`
