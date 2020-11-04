@@ -18,7 +18,7 @@ import subprocess
 
 import pytest
 
-from common import build_image, latest_build_artifact, make_tempdir
+from test_helpers.common import build_image, latest_build_artifact, make_tempdir
 
 
 class TestDataImg:

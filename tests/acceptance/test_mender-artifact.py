@@ -19,7 +19,7 @@ import hashlib
 
 import pytest
 
-from common import build_image, latest_build_artifact, version_is_minimum
+from test_helpers.common import build_image, latest_build_artifact, version_is_minimum
 
 
 # The format of the artifact file which is tested here is documented at:

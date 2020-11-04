@@ -18,14 +18,14 @@ import subprocess
 
 import pytest
 
-from common import (
+from test_helpers.common import (
     build_image,
     latest_build_artifact,
     reboot,
     run_after_connect,
     determine_active_passive_part,
 )
-from helpers import Helpers
+from test_helpers.helpers import Helpers
 
 
 @pytest.mark.commercial

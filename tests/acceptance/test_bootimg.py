@@ -17,7 +17,7 @@ import subprocess
 
 import pytest
 
-from common import (
+from test_helpers.common import (
     build_image,
     latest_build_artifact,
 )

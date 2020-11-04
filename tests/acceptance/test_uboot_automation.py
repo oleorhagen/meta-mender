@@ -24,7 +24,7 @@ import tempfile
 
 import pytest
 
-from common import (
+from test_helpers.common import (
     build_image,
     bitbake_env_from,
     get_bitbake_variables,

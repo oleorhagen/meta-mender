@@ -21,7 +21,7 @@ import tempfile
 
 import pytest
 
-from common import build_image, latest_build_artifact, reset_build_conf, make_tempdir
+from test_helpers.common import build_image, latest_build_artifact, reset_build_conf, make_tempdir
 
 
 def extract_ubimg_files(path, outdir):
