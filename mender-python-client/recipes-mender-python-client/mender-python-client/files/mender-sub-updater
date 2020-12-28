@@ -1,0 +1,46 @@
+#! /bin/bash
+
+# Run the original mender updater as a sub-updater to the mender-python-client
+#
+# This script is run by the API client through the symlink to /var/lib/mender/install
+
+
+MENDER_PYTHON_CLIENT_LOCKFILE=/var/lib/mender/.python-client.lock
+
+# Check if an update is in progress
+
+program_present () {
+  which "$1" || { echo "$1 not found in PATH"; exit 1; }
+}
+
+program_present "mender"
+
+UPDATE_IN_PROGRESS=
+mender commit
+ret=$?
+case ${ret} in
+  0)
+    echo >&2 "Update successful. Restarting the Mender-Python API client..."
+    rm ${MENDER_PYTHON_CLIENT_LOCKFILE}
+    exit 0
+    ;;
+  2)
+    echo >&2 "No update is currently in progress..."
+    exit 0
+    ;;
+  *)
+    echo >&2 "Unexpected 'mender commit' error code ${ret}"
+    exit 1
+    ;;
+esac
+
+if [[ -n "${UPDATE_IN_PROGRESS}" ]]; then
+  mender install /data/"${ARTIFACT_NAME}" || { ret=$?;\
+                                               echo >&2 "Failed to install the update...";\
+                                               exit ${ret}; }
+  exit 0
+fi
+
+echo >&2 "Unexpected error"
+exit 2
+
