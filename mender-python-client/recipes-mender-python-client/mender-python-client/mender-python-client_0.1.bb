@@ -37,6 +37,7 @@ RDEPENDS_${PN} += "python3-core \
 do_install_append () {
 
     bbwarn Installing the mender-python-client.service file
+    install -d ${D}${systemd_unitdir}/system
     install -m 644 ${S}/support/mender-python-client.service ${D}${systemd_unitdir}/system
 }
 
